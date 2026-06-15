@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibe Study Coach</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <div>
+        <p class="tag">Java + SQLite + Frontend + DM/ML</p>
+        <h1>Vibe Study Coach</h1>
+        <p>輸入今天的讀書狀態，系統會用簡單 ML 規則算出專注分數、風險等級與下一步建議。</p>
+      </div>
+      <div class="score-card">
+        <span>平均專注分數</span>
+        <strong id="avgScore">0</strong>
+      </div>
+    </section>
+
+    <section class="grid">
+      <form id="logForm" class="card">
+        <h2>新增讀書紀錄</h2>
+        <label>科目 / 主題
+          <input id="subject" placeholder="例如：計概、普物、英文" required />
+        </label>
+        <label>讀書分鐘數
+          <input id="minutes" type="number" min="1" value="30" required />
+        </label>
+        <div class="two">
+          <label>難度 1-5
+            <input id="difficulty" type="number" min="1" max="5" value="3" required />
+          </label>
+          <label>信心 1-5
+            <input id="confidence" type="number" min="1" max="5" value="3" required />
+          </label>
+        </div>
+        <label>今天卡住的地方
+          <textarea id="note" placeholder="例如：不懂 API 怎麼接 DB"></textarea>
+        </label>
+        <button type="submit">分析並儲存</button>
+      </form>
+
+      <section class="card result">
+        <h2>AI / ML 分析結果</h2>
+        <div id="latestResult" class="empty">還沒有資料，先新增一筆紀錄。</div>
+        <div class="mini-stats">
+          <div><span>總紀錄</span><strong id="count">0</strong></div>
+          <div><span>總分鐘</span><strong id="totalMinutes">0</strong></div>
+        </div>
+      </section>
+    </section>
+
+    <section class="card">
+      <h2>科目統計</h2>
+      <div id="subjectSummary" class="summary-list"></div>
+    </section>
+
+    <section class="card">
+      <h2>最近紀錄</h2>
+      <div id="logs" class="logs"></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
